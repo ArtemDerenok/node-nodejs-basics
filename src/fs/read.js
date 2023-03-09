@@ -1,5 +1,12 @@
+import fs from "fs/promises";
+
 const read = async () => {
-    // Write your code here 
+  try {
+    const data = await fs.readFile("./src/fs/files/fileToRead.txt", "utf-8");
+    console.log(data);
+  } catch (error) {
+    console.log("FS operation failed");
+  }
 };
 
 await read();
