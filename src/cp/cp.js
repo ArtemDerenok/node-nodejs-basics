@@ -1,6 +1,13 @@
+import { fork } from "child_process";
+
 const spawnChildProcess = async (args) => {
-    // Write your code here
+  process.argv.push(args);
+  const forked = fork("./src/cp/files/script.js", args);
+
+  forked.on("message", (msg) => {
+    console.log(msg);
+  });
 };
 
 // Put your arguments in function call to test this functionality
-spawnChildProcess( /* [someArgument1, someArgument2, ...] */);
+spawnChildProcess([1, 2, 3, 4]);
